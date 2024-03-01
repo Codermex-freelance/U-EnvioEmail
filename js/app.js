@@ -33,8 +33,12 @@ document.addEventListener('DOMContentLoaded', function(){
             mostrarAlerta(` El campo ${e.target.id} es obligatorio`, e.target.parentElement);
             return;
         }
-        validarEmail(e.target.parentElement);
-        
+
+        if(e.target.id === 'email' && !validarEmail(e.target.value)){
+            mostrarAlerta('El email no es valido', e.target.parentElement);
+            return;
+        }
+
         limpiarAlerta(e.target.parentElement);
     }
 
@@ -60,9 +64,10 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function validarEmail(email){
-        const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ //expresion regular es copdigo de este tipo  que busca un patron en una cadena de texto o una seria de numero
+        const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/  //expresion regular es copdigo de este tipo  que busca un patron en una cadena de texto o una seria de numero
         const resultado = regex.test(email);
-        console.log(resultado);
+        //console.log(resultado);
+        return resultado;
     }
 
 });
